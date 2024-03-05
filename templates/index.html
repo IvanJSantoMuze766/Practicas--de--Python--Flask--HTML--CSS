@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras y Funcionalidades</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- Estilos -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Calculadoras y Funcionalidades</h1>
+        
+        <!-- Formulario para la calculadora de IMC -->
+        <div class="mt-5">
+            <h2>Calculadora de IMC</h2>
+            <form action="/calculate_bmi" method="post">
+                <div class="form-group">
+                    <label for="weight">Peso (kg):</label>
+                    <input type="number" class="form-control" id="weight" name="weight" required>
+                </div>
+                <div class="form-group">
+                    <label for="height">Altura (m):</label>
+                    <input type="number" class="form-control" id="height" name="height" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Calcular IMC</button>
+            </form>
+
+            <!-- Resultado del IMC -->
+            {% if bmi_result %}
+            <div class="mt-3" style="text-align:center; color:{{ color }}">
+                <h4>Resultado del IMC:</h4>
+                <p>{{ bmi_result }} Categoría de peso: <span class="{{ color }}">{{ category }}</span></p>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Formulario para el comparador de palíndromos -->
+        <div class="mt-5">
+            <h2>Comparador de Palíndromos</h2>
+    <form action="/check_palindrome" method="post" onsubmit="return handlePalindromeForm(event)">
+        <div class="form-group">
+            <label for="word">Palabra:</label>
+            <input type="text" class="form-control" id="word" name="word" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Verificar Palíndromo</button>
+    </form>
+
+    <!-- Div para mostrar el resultado -->
+    <div id="palindromeResult" class="result-text" style="margin-top: 10px;"></div>
+</div>
+
+<script>
+    function handlePalindromeForm(event) {
+        event.preventDefault(); // Prevenir el envío del formulario
+
+        var form = event.target;
+        var formData = new FormData(form);
+
+        // Realizar una solicitud fetch a la ruta /check_palindrome
+        fetch('/check_palindrome', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Mostrar el resultado en el div palindromeResult
+            document.getElementById('palindromeResult').innerHTML = data;
+        });
+
+        return false; // Evitar el envío del formulario
+    }
+</script>
+
+
+<!-- Formulario para el generador de colores RGB -->
+<div class="mt-5">
+    <h2>Generador de Colores RGB</h2>
+    <form action="/generate_color" method="get">
+        <button type="submit" class="btn btn-primary">Generar Color</button>
+    </form>
+    <!-- Div para mostrar el color generado -->
+    <div id="colorResult" class="mt-3 result-text" style="text-align: center;">
+        {% if color %}
+            <p style="color: {{ color }};">Color RGB generado: {{ color }}</p>
+        {% endif %}
+    </div>
+
+
+<script>
+    // Manejar el envío del formulario y mostrar el color generado
+    document.getElementById('colorForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Evitar el envío del formulario por defecto
+        fetch('/generate_color')  // Enviar una solicitud al endpoint de generación de color
+            .then(response => response.text())  // Obtener el color generado como texto
+            .then(color => {  // Manipular el color generado
+                document.getElementById('colorResult').style.backgroundColor = color;  // Establecer el color de fondo del div
+                document.getElementById('colorResult').textContent = `Color RGB generado: ${color}`;  // Mostrar el color generado en el div
+            });
+    });
+</script>
+        
+        <!-- Formulario para la calculadora de préstamos -->
+        <div class="mt-5">
+            <h2>Calculadora de Préstamos</h2>
+            <form action="/calculate_loan" method="post">
+                <div class="form-group">
+                    <label for="loan_amount">Monto del Préstamo:</label>
+                    <input type="number" class="form-control" id="loan_amount" name="loan_amount" required>
+                </div>
+                <div class="form-group">
+                    <label for="interest_rate">Tasa de Interés Anual (%):</label>
+                    <input type="number" class="form-control" id="interest_rate" name="interest_rate" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="loan_term">Plazo del Préstamo (años):</label>
+                    <input type="number" class="form-control" id="loan_term" name="loan_term" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Calcular Préstamo</button>
+            </form>
+            {% if monthly_payment %}
+            <div class="mt-3" style="text-align: center;">
+                <h4>Resultado del Préstamo:</h4>
+                <p>El pago mensual del préstamo es: <strong>${{ monthly_payment | round(2) }}</strong></p>
+            </div>
+            {% endif %}
+        </div>
+        
+    </div>
+
+    <!-- Script de Bootstrap y archivos JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

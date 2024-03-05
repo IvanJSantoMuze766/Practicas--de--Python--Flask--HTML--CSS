@@ -1,0 +1,68 @@
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: Tahoma;  /* Selecciona la fuente de texto para todo el cuerpo */
+    margin: 0;  /* Elimina el margen exterior predeterminado del cuerpo */
+    padding: 0;  /* Elimina el relleno predeterminado del cuerpo */
+    background-color: #9c9c9c;  /* Establece el color de fondo para toda la página */
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    max-width: 600px;  /* Limita el ancho máximo del contenedor para que el contenido no se extienda demasiado */
+    margin: 0 auto;  /* Centra el contenedor horizontalmente en la página */
+    padding: 20px;  /* Añade un espacio interno alrededor del contenido para mejorar la legibilidad */
+    background-color: #ffffff;  /* Agrega un fondo blanco al contenedor para mayor contraste */
+    border-radius: 10px;  /* Aplica esquinas redondeadas al contenedor para un aspecto más moderno */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  /* Agrega una sombra suave al contenedor para resaltarlo */
+}
+
+/* Estilos para los encabezados de nivel 1 (h1) */
+h1 {
+    text-align: center;  /* Centra el texto en el encabezado */
+    color: #333333;  /* Establece el color del texto para una mejor legibilidad */
+    margin-bottom: 20px;  /* Añade un espacio inferior al encabezado para separarlo del contenido */
+}
+
+/* Estilos para los formularios */
+form {
+    margin-bottom: 20px;  /* Añade un espacio inferior al formulario para separarlo del contenido */
+}
+
+/* Estilos para los campos de entrada numérica, de texto y los botones */
+input[type="number"],
+input[type="text"],
+button {
+    display: block;  /* Hace que los elementos se muestren como bloques para ocupar toda la anchura disponible */
+    width: 100%;  /* Establece la anchura del elemento al 100% del contenedor padre */
+    padding: 10px;  /* Añade un relleno interno alrededor del contenido para mejorar la apariencia */
+    margin-bottom: 15px;  /* Añade un espacio inferior entre los elementos para mejorar la legibilidad */
+    border: 1px solid #cccccc;  /* Agrega un borde delgado alrededor de los elementos */
+    border-radius: 5px;  /* Aplica esquinas redondeadas a los elementos para un aspecto más suave */
+    box-sizing: border-box;  /* Incluye el relleno y el borde en el ancho y alto total para un diseño consistente */
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #ff0000;  /* Establece un color de fondo para los botones */
+    color: #ffffff;  /* Establece el color del texto para una mejor visibilidad */
+    cursor: pointer;  /* Cambia el cursor al pasar sobre el botón para indicar que es interactivo */
+    font-weight: bold;  /* Hace que el texto del botón sea más grueso para resaltar */
+}
+
+/* Estilos al pasar el mouse sobre los botones */
+button:hover {
+    background-color: #002853;  /* Cambia el color de fondo del botón al pasar el mouse para dar retroalimentación visual */
+}
+
+/* Estilos para los mensajes de resultado */
+.result-text {
+    text-align: center;  /* Centra el texto para una apariencia más ordenada */
+    font-weight: bold;  /* Hace que el texto sea más grueso para resaltar */
+    margin-top: 20px;  /* Añade un espacio superior para separar el resultado del contenido anterior */
+}
+
+/* Estilos para los colores de los mensajes */
+.celeste { color: #007bff; }  /* Color celeste */
+.verde { color: #16b93c; }  /* Color verde */
+.amarillo { color: #ffbf00; }  /* Color amarillo */
+.rojo { color: #d30015; }  /* Color rojo */
